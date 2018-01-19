@@ -16,10 +16,10 @@ import java.time.Duration;
 @EnableScheduling
 public class SchedulerConfig {
 
-    @Value("${feed.poolSize}")
+    @Value("${feed.poolSize:10}")
     private final int poolSize=10;
 
-    @Value("${feed.duration}")
+    @Value("${feed.duration:10}")
     private final long duration=10L;
 
     @Bean
