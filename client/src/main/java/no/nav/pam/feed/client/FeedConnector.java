@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -17,8 +18,11 @@ import java.util.List;
 public class FeedConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedConnector.class);
-    private static final int RESULT_LIMIT = 1000;
-    private static final int PAGE_SIZE = 200;
+
+    @Value("${feed.resultLimit}")
+    private final int RESULT_LIMIT = 100;
+    @Value("${feed.pageSize}")
+    private final int PAGE_SIZE = 20;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
