@@ -16,7 +16,7 @@ import java.time.Duration;
 @EnableScheduling
 public class SchedulerConfig {
 
-    @Value("${feed.poolSize:10}")
+    @Value("${feed.poolsize:10}")
     private final int poolSize=10;
 
     @Value("${feed.duration:10}")

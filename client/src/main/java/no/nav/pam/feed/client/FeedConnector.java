@@ -18,9 +18,9 @@ import java.util.List;
 public class FeedConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedConnector.class);
-    @Value("${feed.resultLimit:100}")
+    @Value("${feed.resultlimit:100}")
     private final int RESULT_LIMIT = 100;
-    @Value("${feed.pageSize:20}")
+    @Value("${feed.pagesize:20}")
     private final int PAGE_SIZE = 20;
 
     private final RestTemplate restTemplate;
