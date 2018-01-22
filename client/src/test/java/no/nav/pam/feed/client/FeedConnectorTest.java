@@ -14,7 +14,7 @@ public class FeedConnectorTest {
     public void fetchFeedAdTest() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         RestTemplate restTemplate = new RestTemplate();
-        FeedConnector feedConnector = new FeedConnector(objectMapper, restTemplate);
+        FeedConnector feedConnector = new FeedConnector(objectMapper, restTemplate, 100, 20);
         //TODO finish the test later
     }
 

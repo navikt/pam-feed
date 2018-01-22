@@ -18,17 +18,20 @@ import java.util.List;
 public class FeedConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedConnector.class);
-    @Value("${feed.resultlimit:100}")
-    private final int RESULT_LIMIT = 100;
-    @Value("${feed.pagesize:20}")
-    private final int PAGE_SIZE = 20;
+
+    private final int resultlimit;
+    private final int pagesize;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
-    public FeedConnector(ObjectMapper mapper , RestTemplate resttemplate) {
+    public FeedConnector(ObjectMapper mapper , RestTemplate resttemplate,
+                         @Value("${feed.resultlimit:100}") int resultlimit,
+                         @Value("${feed.pagesize:20}") int pagesize) {
         this.mapper = mapper;
         this.restTemplate = resttemplate;
+        this.resultlimit = resultlimit;
+        this.pagesize = pagesize;
     }
 
     public <T> List<T> fetchContentList(String url, long millis,Class<T> type) throws IOException {
@@ -36,7 +39,7 @@ public class FeedConnector {
         int pageNumber = 0;
         boolean lastPage = false;
 
-        while (!lastPage && (pageNumber < RESULT_LIMIT/PAGE_SIZE)) {
+        while (!lastPage && (pageNumber < resultlimit/pagesize)) {
             URI uri = buildURI(url, millis, pageNumber);
             LOG.debug("fetching from uri {}", uri.toString());
             String json = restTemplate.getForObject(uri, String.class);
@@ -55,7 +58,7 @@ public class FeedConnector {
         return UriComponentsBuilder.fromUriString(url)
                 .queryParam("millis", millis)
                 .queryParam("page", pageNumber)
-                .queryParam("size", PAGE_SIZE)
+                .queryParam("size", pagesize)
                 .queryParam("sort", "updated,asc")
                 .build()
                 .toUri();

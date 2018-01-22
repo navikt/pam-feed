@@ -16,14 +16,9 @@ import java.time.Duration;
 @EnableScheduling
 public class SchedulerConfig {
 
-    @Value("${feed.poolsize:10}")
-    private final int poolSize=10;
-
-    @Value("${feed.duration:10}")
-    private final long duration=10L;
-
     @Bean
-    public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider) {
+    public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider, @Value("${feed.poolsize:10}")
+    int poolSize, @Value("${feed.duration:10L}") long duration) {
         return ScheduledLockConfigurationBuilder
                 .withLockProvider(lockProvider)
                 .withPoolSize(poolSize)
