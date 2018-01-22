@@ -16,16 +16,17 @@ public class FeedTask {
     private String feedName;
 
     @Column(name="LAST_RUN_DATE")
-    private Long lastRunDate;
+    private LocalDateTime lastRunDate;
 
     FeedTask() {
+
     }
 
     public FeedTask(String feedName) {
         this.feedName = feedName;
     }
 
-    public FeedTask(String feedName, Long lastRunDate) {
+    public FeedTask(String feedName, LocalDateTime lastRunDate) {
         this.feedName = feedName;
         this.lastRunDate = lastRunDate;
     }
@@ -46,11 +47,11 @@ public class FeedTask {
         this.feedName = feedName;
     }
 
-    public Long getLastRunDate() {
+    public LocalDateTime getLastRunDate() {
         return lastRunDate;
     }
 
-    public void setLastRunDate(Long lastRunDate) {
+    public void setLastRunDate(LocalDateTime lastRunDate) {
         this.lastRunDate = lastRunDate;
     }
 }

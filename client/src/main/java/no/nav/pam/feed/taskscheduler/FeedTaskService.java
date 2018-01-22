@@ -21,14 +21,14 @@ public class FeedTaskService {
      * Return DateTime for last run or an empty Optional
      */
     @Transactional(readOnly = true)
-    public Optional<Long> fetchLastRunDateForJob(String jobName){
+    public Optional<LocalDateTime> fetchLastRunDateForJob(String jobName){
         Optional<FeedTask> historyOptional = repository.findByFeedName(jobName);
 
         return historyOptional.map(x -> x.getLastRunDate());
     }
 
     @Transactional
-    public void save(String jobName, Long lastRunDate){
+    public void save(String jobName, LocalDateTime lastRunDate){
         Optional<FeedTask> historyOptional = repository.findByFeedName(jobName);
 
         FeedTask history = historyOptional.orElse(new FeedTask(jobName));
