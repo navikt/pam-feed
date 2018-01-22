@@ -18,7 +18,7 @@ public class SchedulerConfig {
 
     @Bean
     public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider, @Value("${feed.poolsize:10}")
-    int poolSize, @Value("${feed.duration:10L}") long duration) {
+    int poolSize, @Value("${feed.duration:10}") long duration) {
         return ScheduledLockConfigurationBuilder
                 .withLockProvider(lockProvider)
                 .withPoolSize(poolSize)
