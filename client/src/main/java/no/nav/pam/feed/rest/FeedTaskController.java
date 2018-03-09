@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = "/feedtask", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/feedtask", produces = APPLICATION_JSON_VALUE)
 public class FeedTaskController {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedTaskController.class);
