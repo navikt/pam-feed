@@ -4,7 +4,7 @@
 
     <groupId>no.nav.pam.feed</groupId>
     <artifactId>pam-feed</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>client</module>
@@ -97,7 +97,7 @@
     <scm>
         <connection>scm:git:ssh://git@stash.devillo.no:7999/pam/pam-feed.git</connection>
         <developerConnection>scm:git:ssh://git@stash.devillo.no:7999/pam/pam-feed.git</developerConnection>
-        <tag>pam-feed-0.4</tag>
+        <tag>HEAD</tag>
     </scm>
 
 </project>
