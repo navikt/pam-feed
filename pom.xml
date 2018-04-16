@@ -4,7 +4,7 @@
 
     <groupId>no.nav.pam.feed</groupId>
     <artifactId>pam-feed</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>pom</packaging>
     <modules>
         <module>client</module>
@@ -92,7 +92,7 @@
 	<url>https://github.com/navikt/pam-feed.git</url>	
         <connection>scm:git:https://github.com/navikt/pam-feed.git</connection>
         <developerConnection>scm:git:https://github.com/navikt/pam-feed.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>pam-feed-0.5</tag>
     </scm>
 
 </project>
