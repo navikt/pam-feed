@@ -36,7 +36,7 @@ public class FeedTaskController {
     }
 
     @GetMapping
-    public ResponseEntity<LocalDateTime> fetchLastRunDate(String jobName){
+    public ResponseEntity<LocalDateTime> fetchLastRunDate(@RequestParam("name") String jobName){
         LocalDateTime lastRunDate = feedTaskService.fetchLastRunDateForJob(jobName).orElse(null);
 
         return ResponseEntity.ok(lastRunDate);
