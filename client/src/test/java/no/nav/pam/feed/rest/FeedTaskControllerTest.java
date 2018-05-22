@@ -1,6 +1,7 @@
 package no.nav.pam.feed.rest;
 
 
+import no.nav.pam.feed.taskscheduler.FeedTask;
 import no.nav.pam.feed.taskscheduler.FeedTaskService;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -34,11 +36,15 @@ public class FeedTaskControllerTest {
     public void should_fetch_last_run_date() {
         LocalDateTime time = LocalDateTime.now();
 
-        when(feedTaskService.fetchLastRunDateForJob(JOB_NAME)).thenReturn(Optional.of(time));
+        List<FeedTask> feedTaskLis = new ArrayList();
+        feedTaskLis.add(new FeedTask("TEST1", LocalDateTime.now()));
+        feedTaskLis.add(new FeedTask("TEST2", LocalDateTime.now()));
 
-        ResponseEntity<LocalDateTime> entity = controller.fetchLastRunDate(JOB_NAME);
+        when(feedTaskService.fetchAllFeedTasks()).thenReturn(feedTaskLis);
 
-        assertEquals(time, entity.getBody());
+        ResponseEntity<List<FeedTask>> entity = controller.fetchAllFeedTasks();
+
+        assertEquals(2, entity.getBody().size());
     }
 
 

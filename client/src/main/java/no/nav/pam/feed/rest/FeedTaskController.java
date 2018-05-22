@@ -1,5 +1,6 @@
 package no.nav.pam.feed.rest;
 
+import no.nav.pam.feed.taskscheduler.FeedTask;
 import no.nav.pam.feed.taskscheduler.FeedTaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -36,9 +38,7 @@ public class FeedTaskController {
     }
 
     @GetMapping
-    public ResponseEntity<LocalDateTime> fetchLastRunDate(@RequestParam("name") String jobName){
-        LocalDateTime lastRunDate = feedTaskService.fetchLastRunDateForJob(jobName).orElse(null);
-
-        return ResponseEntity.ok(lastRunDate);
+    public ResponseEntity<List<FeedTask>> fetchAllFeedTasks(){
+        return ResponseEntity.ok(feedTaskService.fetchAllFeedTasks());
     }
 }

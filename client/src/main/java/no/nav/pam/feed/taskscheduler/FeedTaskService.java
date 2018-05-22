@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +27,15 @@ public class FeedTaskService {
         Optional<FeedTask> historyOptional = repository.findByFeedName(jobName);
 
         return historyOptional.map(x -> x.getLastRunDate());
+    }
+
+    @Transactional(readOnly = true)
+    public List<FeedTask> fetchAllFeedTasks(){
+        List<FeedTask> feedTasks = new ArrayList<>();
+
+        repository.findAll().forEach(ft -> feedTasks.add(ft));
+
+        return feedTasks;
     }
 
     @Transactional
