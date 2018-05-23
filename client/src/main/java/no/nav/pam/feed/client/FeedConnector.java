@@ -41,7 +41,7 @@ public class FeedConnector {
 
         while (!lastPage && (pageNumber < resultlimit/pagesize)) {
             URI uri = buildURI(url, millis, pageNumber);
-            LOG.debug("fetching from uri {}", uri.toString());
+            LOG.info("fetching from uri {}", uri.toString());
             String json = restTemplate.getForObject(uri, String.class);
             JavaType javaType = mapper.getTypeFactory().constructParametricType(FeedTransport.class, type);
             FeedTransport<T> feedPage = mapper.readValue(json, javaType);
