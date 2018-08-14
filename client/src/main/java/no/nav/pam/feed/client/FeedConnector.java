@@ -38,8 +38,19 @@ public class FeedConnector {
         return fetchWithURI(uri, type);
     }
 
-    public <T> List<T> fetchContentList(String url, LocalDateTime dateTime, Class<T> type) throws IOException {
-        URI uri = buildURI(url, dateTime);
+    /**
+     * Will fetch feed with elements updated since the given date.
+     *
+     * This method should only be used when the feed producers support timestamp parameters
+     * @param url Feed producer URL
+     * @param updatedSince ISO DateTime stamp to
+     * @param type element type
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    public <T> List<T> fetchContentList(String url, LocalDateTime updatedSince, Class<T> type) throws IOException {
+        URI uri = buildURI(url, updatedSince);
 
         return fetchWithURI(uri, type);
     }
@@ -66,9 +77,9 @@ public class FeedConnector {
                 .toUri();
     }
 
-    private URI buildURI(String url, LocalDateTime dateTime) {
+    private URI buildURI(String url, LocalDateTime updatedSince) {
         return UriComponentsBuilder.fromUriString(url)
-                .queryParam("timestamp", dateTime)
+                .queryParam("timestamp", updatedSince)
                 .queryParam("size", pagesize)
                 .queryParam("sort", "updated,asc")
                 .build()
