@@ -79,7 +79,7 @@ public class FeedConnector {
 
     private URI buildURI(String url, LocalDateTime updatedSince) {
         return UriComponentsBuilder.fromUriString(url)
-                .queryParam("timestamp", updatedSince)
+                .queryParam("updatedSince", updatedSince)
                 .queryParam("size", pagesize)
                 .queryParam("sort", "updated,asc")
                 .build()
