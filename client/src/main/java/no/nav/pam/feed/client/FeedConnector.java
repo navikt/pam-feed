@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -54,6 +58,25 @@ public class FeedConnector {
 
         return fetchWithURI(uri, type);
     }
+
+    public <T> List<T> fetchContentList(String url, LocalDateTime updatedSince, Class<T> type, HttpHeaders headers) throws IOException {
+        URI uri = buildURI(url, updatedSince);
+
+        return fetchWithURIHeader(uri, type, headers);
+    }
+
+    private <T> List<T> fetchWithURIHeader(URI uri, Class<T> type, HttpHeaders headers) throws IOException {
+        List<T> items = new ArrayList<>();
+        LOG.info("fetching from uri {}", uri.toString());
+        HttpEntity entity = new HttpEntity(headers);
+        ResponseEntity<String> exchange = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        String json = exchange.getBody();
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(FeedTransport.class, type);
+        FeedTransport<T> feedPage = mapper.readValue(json, javaType);
+        items.addAll(feedPage.content);
+        return items;
+    }
+
 
     private <T> List<T> fetchWithURI(URI uri, Class<T> type) throws IOException {
         List<T> items = new ArrayList<>();
