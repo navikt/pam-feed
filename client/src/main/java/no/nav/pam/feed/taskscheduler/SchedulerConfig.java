@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "PT10S")
+@EnableSchedulerLock(defaultLockAtMostFor = "PT60S")
 public class SchedulerConfig {
 
     @Bean
