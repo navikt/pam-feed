@@ -17,7 +17,7 @@
         <assertj.version>3.11.1</assertj.version>
         <mockito.version>2.23.4</mockito.version>
         <shedlock.version>2.2.0</shedlock.version>
-        <jackson.version>2.9.9.1</jackson.version>
+        <jackson.version>2.9.9.2</jackson.version>
     </properties>
 
 
