@@ -23,13 +23,20 @@
     </properties>
 
 
-    <distributionManagement>
-        <repository>
-            <id>m2internal</id>
-            <name>NAV Maven2 Internal Repository</name>
-            <url>https://repo.adeo.no/repository/maven-releases</url>
-        </repository>
-    </distributionManagement>
+  <repositories>
+    <repository>
+      <name>jcenter</name>
+      <id>jcenter</id>
+      <url>http://jcenter.bintray.com/</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/navikt/pam-feed</url>
+    </repository>
+  </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
