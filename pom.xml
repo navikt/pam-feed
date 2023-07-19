@@ -4,7 +4,7 @@
 
     <groupId>no.nav.pam.feed</groupId>
     <artifactId>pam-feed</artifactId>
-    <version>1.12</version>
+    <version>1.13-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>client</module>
