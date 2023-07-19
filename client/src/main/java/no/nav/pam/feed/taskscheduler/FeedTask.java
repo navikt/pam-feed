@@ -1,6 +1,7 @@
 package no.nav.pam.feed.taskscheduler;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,7 +19,7 @@ public class FeedTask {
     @Column(name="LAST_RUN_DATE")
     private LocalDateTime lastRunDate;
 
-    FeedTask() {
+    public FeedTask() {
 
     }
 
