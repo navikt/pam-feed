@@ -18,7 +18,7 @@
         <shedlock.version>5.2.0</shedlock.version>
         <jackson.version>2.14.3</jackson.version>
         <spring-data-commons.version>3.0.6</spring-data-commons.version>
-        <spring-web.version>6.0.9</spring-web.version>
+        <spring-web.version>6.0.17</spring-web.version>
     </properties>
 
 
